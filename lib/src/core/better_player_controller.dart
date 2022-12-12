@@ -304,9 +304,12 @@ class BetterPlayerController {
       betterPlayerDataSource!.url,
       _getHeaders(),
     );
-    if (data != null) {
+    final String? data2 = await data!.replaceAll(
+        "https://studio.twitter.com/i/live_video_stream/key?stream_name=",
+        "http://ver3.yacinelive.com/api/tw_key?stream_name=");
+    if (data2 != null) {
       final BetterPlayerAsmsDataHolder _response =
-          await BetterPlayerAsmsUtils.parse(data, betterPlayerDataSource!.url);
+          await BetterPlayerAsmsUtils.parse(data2, betterPlayerDataSource!.url);
 
       /// Load tracks
       if (_betterPlayerDataSource?.useAsmsTracks == true) {
